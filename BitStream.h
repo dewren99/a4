@@ -15,7 +15,7 @@ class BitStream
 {
     public:
     BitStream(); // read file?
-    void read_input(const ifstream& input_file);
+    void read_input(ifstream& input_file);
     void write_output();
     unsigned get_file_length() const;
 
