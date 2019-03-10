@@ -1,4 +1,12 @@
-
+/*
+ * Node.h
+ *
+ * Class Description:
+ *
+ *
+ * Author: Deniz Evrendilek
+ * Date:  16/MAR/2019
+ */
 #include <cstdio>
 
 template <class T>
@@ -28,7 +36,7 @@ Node<T>::Node(T data)
 }
 
 template <class T>
-Node<T>::Node(T data, T* next)
+Node<T>::Node(T data, T *next)
 {
     this->data = data;
     this->next = next;
