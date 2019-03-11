@@ -18,7 +18,11 @@ class FrequencyCounter
   public:
   FrequencyCounter();
   //FrequencyCounter(unsigned capacity);
-  FrequencyCounter(ifstream input_file);
+  FrequencyCounter(ifstream& input_file);
+  //void input(ifstream& input_file);
+
+unsigned get_capacity(){return capacity;};
+
   private:
     char letter;
     unsigned frequency;

@@ -8,10 +8,10 @@
  * Date:  16/MAR/2019
  */
 #include "FrequencyCounter.h"
-#include "BitStream.h"
-#include "Node.h"
-#include "PriorityQueue.h"
-#include "HuffmanTree.h"
+//#include "BitStream.h"
+//#include "Node.h"
+//#include "PriorityQueue.h"
+//#include "HuffmanTree.h"
 
 #include <iostream>
 #include <string>
@@ -24,7 +24,11 @@ int main()
 
     ifstream in_file (file_name.c_str());
 
-    FrequencyCounter(in_file);
+    FrequencyCounter obj(in_file);
+
+    cout<<"capacity: "<<obj.get_capacity()<<endl;
+
+    //obj.input(in_file);
     
     // ifstream in_file;
     // ofstream out;
