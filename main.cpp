@@ -14,11 +14,18 @@
 #include "HuffmanTree.h"
 
 #include <iostream>
-
+#include <string>
 using namespace std;
 
 int main()
 {
+    string file_name;
+    cin >> file_name;
+
+    ifstream in_file (file_name.c_str());
+
+    FrequencyCounter(in_file);
+    
     // ifstream in_file;
     // ofstream out;
 
