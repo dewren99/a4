@@ -17,7 +17,7 @@ FrequencyCounter::FrequencyCounter()
     frequency_table = new FrequencyCounter[capacity];
 }
 
-FrequencyCounter::FrequencyCounter(ifstream &input_file)
+FrequencyCounter::FrequencyCounter(ifstream &input_file) // CHECK ALGO
 {
     //ifstream in_file;
 
@@ -94,7 +94,8 @@ FrequencyCounter::FrequencyCounter(ifstream &input_file)
         //         }
         //     }
     }
-
+  
     // copy chars and find count their frequency
     // no char should repeat inside frequency table so dont copy the char if its already in frequency table, instead increase the frequency
+
 }
