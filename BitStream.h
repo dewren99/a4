@@ -22,4 +22,4 @@ class BitStream
     private:
     unsigned file_length;
 
-}
+};
