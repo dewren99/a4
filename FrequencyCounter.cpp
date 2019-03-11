@@ -16,7 +16,7 @@ FrequencyCounter::FrequencyCounter()
     frequency_table = new FrequencyCounter[capacity];
 }
 
-FrequencyCounter::FrequencyCounter(ifstream &input_file)
+FrequencyCounter::FrequencyCounter(ifstream &input_file) // CHECK ALGO
 {
     //ifstream in_file;
 
