@@ -11,13 +11,10 @@
 
 HuffmanTree::HuffmanTree()
 {
-
+    root = NULL;
 }
 
-HuffmanTree::HuffmanTree(char letter)
-{
 
-}
 
 HuffmanTree::~HuffmanTree()
 {

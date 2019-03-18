@@ -68,7 +68,7 @@ FrequencyCounter::FrequencyCounter(ifstream &input_file) // CHECK ALGO
             bool same_value_found = false;
             unsigned counter = 0;
             int k = 0;
-            if (i == index_holder[i] && i!=0)
+            if (i == index_holder[i] && i != 0)
             {
                 continue;
             }
@@ -98,13 +98,13 @@ FrequencyCounter::FrequencyCounter(ifstream &input_file) // CHECK ALGO
                 }
             }
         }
-        FrequencyCounter* temp = new FrequencyCounter[capacity];
+        FrequencyCounter *temp = new FrequencyCounter[capacity];
         unsigned new_size = 0;
 
-        for(int i=0; i<capacity; i++)
+        for (int i = 0; i < capacity; i++)
         {
             temp[i] = frequency_table[i];
-            if(frequency_table[i].frequency != 0)
+            if (frequency_table[i].frequency != 0)
             {
                 new_size++;
             }
@@ -114,9 +114,9 @@ FrequencyCounter::FrequencyCounter(ifstream &input_file) // CHECK ALGO
 
         frequency_table = new FrequencyCounter[new_size];
 
-        for(int i=0, j=0; i<capacity; i++)
+        for (int i = 0, j = 0; i < capacity; i++)
         {
-            if(temp[i].frequency != 0)
+            if (temp[i].frequency != 0)
             {
                 //cout<<"adding "<< temp[i].letter<<endl;
                 frequency_table[j] = temp[i];
@@ -126,18 +126,22 @@ FrequencyCounter::FrequencyCounter(ifstream &input_file) // CHECK ALGO
             {
                 //cout<<"not adding "<< temp[i].letter<<endl;
             }
-            
         }
 
         capacity = new_size;
-        cout<<endl;
-        cout<<endl;
-        for (int i = 0; i <capacity; i++)
+        size = capacity-1;
+        cout << endl;
+
+        unsigned start = 0;
+
+        merge_sort(frequency_table,start,size);
+
+        for (int i = 0; i < capacity; i++)
         {
             cout << frequency_table[i].letter << " " << frequency_table[i].frequency << endl;
         }
 
-
+        // Coding for Sorting the frequency table from now on
     }
     /////////////////////////////////////////////////////
     // for(int i=0; i<capacity; i++)
@@ -240,3 +244,105 @@ FrequencyCounter::FrequencyCounter(ifstream &input_file) // CHECK ALGO
 //     // no char should repeat inside frequency table so dont copy the char if its already in frequency table, instead increase the frequency
 
 // }
+
+bool operator<=(const FrequencyCounter& arr1, const FrequencyCounter& arr2)
+{
+    return (arr1.get_frequency() <= arr2.get_frequency());
+}
+
+bool operator>=(const FrequencyCounter& arr1, const FrequencyCounter& arr2)
+{
+    return (arr1.get_frequency() >= arr2.get_frequency());
+}
+
+void merge(FrequencyCounter *arr, unsigned first, unsigned mid, unsigned last)
+{
+
+       int i, j, k; 
+    int n1 = mid - first + 1; 
+    int n2 =  last - mid; 
+  
+    /* create temp arrays */
+    FrequencyCounter L[n1], R[n2]; 
+  
+    /* Copy data to temp arrays L[] and R[] */
+    for (i = 0; i < n1; i++) 
+        L[i] = arr[first + i]; 
+    for (j = 0; j < n2; j++) 
+        R[j] = arr[mid + 1+ j]; 
+  
+    /* Merge the temp arrays back into arr[l..r]*/
+    i = 0; // Initial index of first subarray 
+    j = 0; // Initial index of second subarray 
+    k = first; // Initial index of merged subarray 
+    while (i < n1 && j < n2) 
+    { 
+        if (L[i] <= R[j]) 
+        { 
+            arr[k] = L[i]; 
+            i++; 
+        } 
+        else
+        { 
+            arr[k] = R[j]; 
+            j++; 
+        } 
+        k++; 
+    } 
+  
+    /* Copy the remaining elements of L[], if there 
+       are any */
+    while (i < n1) 
+    { 
+        arr[k] = L[i]; 
+        i++; 
+        k++; 
+    } 
+  
+    /* Copy the remaining elements of R[], if there 
+       are any */
+    while (j < n2) 
+    { 
+        arr[k] = R[j]; 
+        j++; 
+        k++; 
+    }
+
+
+    // unsigned len = last - first + 1;
+
+    // FrequencyCounter temp_arr[len];
+
+    // unsigned left_pos = first;
+    // unsigned rigth_pos = mid + 1;
+    // unsigned temp_arr_pos = 0;
+
+    // while (left_pos <= mid && rigth_pos <= last)
+    // {
+    //     if (arr[left_pos] <= arr[rigth_pos])
+    //     {
+    //         temp_arr[temp_arr_pos++] = arr[left_pos++];
+    //     }
+    //     else
+    //     {
+    //         temp_arr[temp_arr_pos++] = arr[rigth_pos++];
+    //     }
+    // }
+    // for(int k = 0, i = first+1; i <= last; ++i, ++k)
+    // {
+    //     arr[i] = temp_arr[k];
+    // }
+}
+
+void merge_sort(FrequencyCounter *arr, unsigned first, unsigned last)
+{
+    if (last <= first)
+        return;
+    unsigned mid = (last + first) / 2;
+
+    merge_sort(arr, first, mid);
+    merge_sort(arr, mid + 1, last);
+
+    merge(arr, first, mid, last);
+}
+
