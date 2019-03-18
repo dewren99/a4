@@ -7,18 +7,32 @@
  * Author: Deniz Evrendilek
  * Date:  16/MAR/2019
  */
-#include "Node.h"
 
-template <class T>
+#include "Node.h"
+#include "FrequencyCounter.h"
+
+class PQ_node
+{
+public:
+  char chr;
+  unsigned frequency;
+  PQ_node *next;
+};
+
 class PriorityQueue
 {
 
 public:
   PriorityQueue();
 
-  void enqueue();
+  void enqueue(const char& chr, const unsigned& frequency);
+  void enqueue(const FrequencyCounter& obj);
+
   void dequeue();
-  T top() const;
+  
+  PQ_node& top() const;
+
+  bool is_empty() const;
 
   unsigned get_length() const;
 
@@ -26,46 +40,5 @@ public:
 
 private:
   unsigned length;
-  Node<T> *head;
+  PQ_node *head;
 };
-
-template <class T>
-PriorityQueue<T>::PriorityQueue()
-{
-
-}
-
-template <class T>
-void PriorityQueue<T>::enqueue()
-{
-
-}
-
-template <class T>
-void PriorityQueue<T>::dequeue()
-{
-
-}
-
-template <class T>
-T PriorityQueue<T>::top() const
-{
-  if(head)
-  {
-    return head->data;
-  }
-}
-
-template <class T>
-unsigned PriorityQueue<T>::get_length() const
-{
-  return length;
-}
-
-
-
-template <class T>
-PriorityQueue<T>::~PriorityQueue()
-{
-
-}
