@@ -314,18 +314,18 @@ void merge(FrequencyCounter *arr, unsigned first, unsigned mid, unsigned last)
     // FrequencyCounter temp_arr[len];
 
     // unsigned left_pos = first;
-    // unsigned rigth_pos = mid + 1;
+    // unsigned right_pos = mid + 1;
     // unsigned temp_arr_pos = 0;
 
-    // while (left_pos <= mid && rigth_pos <= last)
+    // while (left_pos <= mid && right_pos <= last)
     // {
-    //     if (arr[left_pos] <= arr[rigth_pos])
+    //     if (arr[left_pos] <= arr[right_pos])
     //     {
     //         temp_arr[temp_arr_pos++] = arr[left_pos++];
     //     }
     //     else
     //     {
-    //         temp_arr[temp_arr_pos++] = arr[rigth_pos++];
+    //         temp_arr[temp_arr_pos++] = arr[right_pos++];
     //     }
     // }
     // for(int k = 0, i = first+1; i <= last; ++i, ++k)
@@ -346,3 +346,10 @@ void merge_sort(FrequencyCounter *arr, unsigned first, unsigned last)
     merge(arr, first, mid, last);
 }
 
+  FrequencyCounter& FrequencyCounter::operator[](const unsigned& index) const
+  {
+      if(index >= capacity)
+      cout<<"out of bound"<<endl;
+      else
+      return frequency_table[index]; 
+  }

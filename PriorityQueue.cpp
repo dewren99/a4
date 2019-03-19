@@ -10,102 +10,131 @@
 
 #include "PriorityQueue.h"
 
+// PQ_node::PQ_node()
+// {
+// }
+
+// PQ_node::PQ_node(char chr, unsigned frequency)
+// {
+//     this->chr = chr;
+//     this->frequency = frequency;
+// }
 
 PriorityQueue::PriorityQueue()
 {
-    length = 0;
+    size = 0;
     head = NULL;
 }
 
-void PriorityQueue::enqueue(const char& chr, const unsigned& frequency)
+void PriorityQueue::enqueue(const char &chr, const unsigned &frequency)
 {
-    PQ_node* new_node = new PQ_node();
+    Node *new_node = new Node();
     new_node->chr = chr;
     new_node->frequency = frequency;
     new_node->next = NULL;
 
-    if(is_empty())
+    if (is_empty())
     {
         head = new_node;
     }
     else
     {
-        PQ_node* temp = head;
-        while(temp->next!=NULL)
+        Node *temp = head;
+        while (temp->next != NULL)
         {
-            temp=temp->next;
+            temp = temp->next;
         }
         temp->next = new_node;
     }
-    length++;
+    size++;
 }
 
-void PriorityQueue::enqueue(const FrequencyCounter& obj)
+// Implemented to give more options to the programmer
+void PriorityQueue::enqueue(const FrequencyCounter &obj)
 {
-    PQ_node* new_node = new PQ_node();
+    Node *new_node = new Node();
     new_node->chr = obj.get_letter();
     new_node->frequency = obj.get_frequency();
     new_node->next = NULL;
 
-    if(is_empty())
+    if (is_empty())
     {
         head = new_node;
     }
     else
     {
-        PQ_node* temp = head;
-        while(temp->next!=NULL)
+        Node *temp = head;
+        while (temp->next != NULL)
         {
-            temp=temp->next;
+            temp = temp->next;
         }
         temp->next = new_node;
     }
-    length++;
+    size++;
 }
 
-void PriorityQueue::dequeue()
+void PriorityQueue::enqueue(const Node& node)
 {
-    if(is_empty())
+    Node *new_node = new Node();
+    new_node->chr = node.chr;
+    new_node->frequency = node.frequency;
+    new_node->next = NULL;
+
+    if (is_empty())
     {
-        cout<<"Empty, cant dequeue"<<endl;
+        head = new_node;
     }
     else
     {
-        PQ_node* temp = head;
+        Node *temp = head;
+        while (temp->next != NULL)
+        {
+            temp = temp->next;
+        }
+        temp->next = new_node;
+    }
+    size++;
+}
+
+
+void PriorityQueue::dequeue()
+{
+    if (is_empty())
+    {
+        return;
+    }
+    else
+    {
+        Node *temp = head;
         head = head->next;
         delete temp;
-        length--;
+        size--;
     }
 }
 
-PQ_node& PriorityQueue::top() const
+Node* PriorityQueue::top() const
 {
-  if(is_empty())
-  {
-      cout<<"Empty cant return top"<<endl;
-  }
-  else
-  { 
-      return *head;
-  }
+    if(!is_empty())
+    {
+        return head;
+    }
 }
 
 bool PriorityQueue::is_empty() const
 {
-    return (head==NULL);
+    return (head == NULL);
 }
 
-unsigned PriorityQueue::get_length() const
+unsigned PriorityQueue::get_size() const
 {
-  return length;
+    return size;
 }
-
 
 PriorityQueue::~PriorityQueue()
 {
-    PQ_node* prev = head;
-    PQ_node* curr = head;
-    while(curr!=NULL)
+    Node *prev = head;
+    Node *curr = head;
+    while (curr != NULL)
     {
         prev = curr;
         curr = curr->next;

@@ -9,45 +9,104 @@
  */
 
 #include "BitStream.h"
-#include<iostream>
+#include <iostream>
 
-BitStream::BitStream()
+//InBitStream Member Functions
+
+
+InBitStream::InBitStream()
+{
+
+}
+
+InBitStream::InBitStream(const string &file_path)
 {
 }
 
-void BitStream::read_input(ifstream &input_file)
-{
-    // //ifstream in_file;
-
-    // //string file_name;
-    // char letter;
-
-    // //cin >> file_name;
-
-    // //in_file.open(file_name);
-    // if (!input_file)
-    // {
-    //     std::cout << "error-change this error type l8r" << std::endl;
-    // }
-    // else
-    // {
-    //     input_file.seekg(0, input_file.end);          // determining file length
-    //     file_length = input_file.tellg(); // determining file length
-    //     input_file.seekg(0, input_file.beg);          // determining file length
-
-    //     char *arr = new char[file_length];
-
-    //     while (!input_file.eof()) // while not end of file, read the characters
-    //     {
-    //         input_file.read(arr, file_length);
-    //     }
-    // }
-}
-void BitStream::write_output()
+// Closing the file. It is called by the destructor, If it is not called manually.
+void InBitStream::close()
 {
 }
 
-unsigned BitStream::get_file_length() const
+void InBitStream::read_input(ifstream &input_file)
 {
-    return file_length;
 }
+
+InBitStream::~InBitStream()
+{
+    if (is_open())
+    {
+        close();
+    }
+}
+//InBitStream Member Functions End Here
+
+
+//OutBitStream Member Functions
+
+OutBitStream::OutBitStream()
+{
+
+}
+OutBitStream::OutBitStream(const string &file_path)
+{
+
+}
+
+void OutBitStream::write_output()
+{
+
+}
+
+// Closing the file. It is called by the destructor, If it is not called manually.
+void OutBitStream::close()
+{
+
+}
+
+
+OutBitStream::~OutBitStream()
+{
+    if(is_open())
+    {
+        close();
+    }
+}
+//OutBitStream Member Functions End Here
+
+
+// void BitStream::read_input(ifstream &input_file)
+// {
+//     // //ifstream in_file;
+
+//     // //string file_name;
+//     // char letter;
+
+//     // //cin >> file_name;
+
+//     // //in_file.open(file_name);
+//     // if (!input_file)
+//     // {
+//     //     std::cout << "error-change this error type l8r" << std::endl;
+//     // }
+//     // else
+//     // {
+//     //     input_file.seekg(0, input_file.end);          // determining file length
+//     //     file_length = input_file.tellg(); // determining file length
+//     //     input_file.seekg(0, input_file.beg);          // determining file length
+
+//     //     char *arr = new char[file_length];
+
+//     //     while (!input_file.eof()) // while not end of file, read the characters
+//     //     {
+//     //         input_file.read(arr, file_length);
+//     //     }
+//     // }
+// }
+// void BitStream::write_output()
+// {
+// }
+
+// unsigned BitStream::get_file_length() const
+// {
+//     return file_length;

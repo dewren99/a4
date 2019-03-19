@@ -8,6 +8,8 @@
  * Date:  16/MAR/2019
  */
 
+#pragma once
+
 #include <fstream>
 #include <iostream>
 
@@ -27,6 +29,7 @@ public:
   friend void merge(FrequencyCounter *arr, unsigned first, unsigned mid, unsigned last);
   friend void merge_sort(FrequencyCounter *arr, unsigned first, unsigned last);
 
+  FrequencyCounter& operator[](const unsigned& index) const;
 
 
   unsigned get_capacity() const { return capacity; };
