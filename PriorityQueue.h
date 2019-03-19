@@ -8,16 +8,21 @@
  * Date:  16/MAR/2019
  */
 
-#include "Node.h"
-#include "FrequencyCounter.h"
+#pragma once
 
-class PQ_node
-{
-public:
-  char chr;
-  unsigned frequency;
-  PQ_node *next;
-};
+
+#include "Node.h"
+
+// class PQ_node
+// {
+// public:
+//   char chr;
+//   unsigned frequency;
+//   PQ_node *next;
+
+//   PQ_node();
+//   PQ_node(char chr, unsigned frequency);
+// };
 
 class PriorityQueue
 {
@@ -25,20 +30,23 @@ class PriorityQueue
 public:
   PriorityQueue();
 
-  void enqueue(const char& chr, const unsigned& frequency);
-  void enqueue(const FrequencyCounter& obj);
+  void enqueue(const char &chr, const unsigned &frequency);
+  void enqueue(const FrequencyCounter &obj);
+  void enqueue(const Node& node);
 
   void dequeue();
-  
-  PQ_node& top() const;
+
+  Node* top() const;
 
   bool is_empty() const;
 
-  unsigned get_length() const;
+  unsigned get_size() const;
 
   ~PriorityQueue();
 
+void print(){ Node* temp = head; while(temp!=NULL){ cout<< temp->chr<<' '<<temp->frequency<<endl; temp = temp->next; }};
+
 private:
-  unsigned length;
-  PQ_node *head;
+  unsigned size;
+  Node *head;
 };

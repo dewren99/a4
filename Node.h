@@ -1,85 +1,83 @@
 /*
  * Node.h
  *
- * Class Description:
+ * Class Description: Node class for both PQ and HF tree.
  *
  *
  * Author: Deniz Evrendilek
  * Date:  16/MAR/2019
  */
-#include <cstdio>
 
-template <class T>
+#pragma once
+
+#include <cstdio>
+#include "FrequencyCounter.h"
+
 class Node
 {
   public:
     char chr;
     unsigned frequency;
-    // Node* right;
-    // Node* left;
-
+    Node *right;
+    Node *left;
+    Node *next;
 
     Node();
-    Node(char chr, unsigned frequency);
-    Node(FrequencyCounter chr_n_time);
-    //Node(char chr, Node *rigth, Node* left);
+    Node(const char& chr);
+    Node(const Node &origin);
+    Node(const char &chr, const unsigned &frequency);
+    Node(const FrequencyCounter& freq_and_chr);
+    Node(const char& chr, Node *rigth, Node *left);
 
     // Getters
     char get_chr() const;
     unsigned get_freq() const;
-    
+
     // Setters
     void set_chr(char chr);
     void set_freq(unsigned frequency);
 };
 
-template <class T>
-Node<T>::Node()
-{
-    //rigth = NULL;
-    //left = NULL;
-    this->chr = NULL;
-    this->frequency = NULL;
-}
-
-template <class T>
-Node<T>::Node(char chr, unsigned frequency)
-{
-    this->chr = chr;
-    this->frequency = frequency;
-}
-
-// template <class T>
-// Node<T>::Node(char chr, Node *rigth, Node* left)
+// Node::Node()
 // {
-//     this->chr = chr;
-//     left = NULL;
-//     rigth = NULL;
+//     next = left = right = NULL;
 // }
 
- // Getters
- template <class T>
-char Node<T>::get_chr() const
-{
-return chr;
-}
+// Node::Node(char chr, unsigned frequency)
+// {
+//     next = left = right = NULL;
+//     this->chr = chr;
+//     this->frequency = frequency;
+// }
 
-template <class T>
-unsigned Node<T>::get_freq() const
-{
-return frequency;
-}
-    
-// Setters
-template <class T>
-void Node<T>::set_chr(char chr)
-{
-this->chr = chr;
-}
+// Node::Node(char chr, Node *right, Node* left)
+// {
+//     this->chr = chr;
+//     this->left = left;
+//     this->right = right;
+//     next = NULL;
+// }
 
-template <class T>
-void Node<T>::set_freq(unsigned frequency)
-{
-this->frequency = frequency;
-}
+//  // Getters
 
+// char Node::get_chr() const
+// {
+// return chr;
+// }
+
+// unsigned Node::get_freq() const
+// {
+// return frequency;
+// }
+
+// // Setters
+
+// void Node::set_chr(char chr)
+// {
+// this->chr = chr;
+// }
+
+// void Node::set_freq(unsigned frequency)
+// {
+// this->frequency = frequency;
+// }
