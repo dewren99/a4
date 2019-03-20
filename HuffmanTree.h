@@ -10,47 +10,36 @@
 
 #pragma once
 
+
 #include "Node.h"
 #include "FrequencyCounter.h"
-#include "BitStream.h"
 #include "PriorityQueue.h"
+#include "string"
 
-// class HT_node
-// {
-// public:
-//   char chr;
-//   unsigned frequency;
-//   HT_node *right;
-//   HT_node *left;
-//   HT_node *parent;
-
-//   HT_node();
-
-//   HT_node(char chr);
-
-//   // leaf node constructor.
-//   HT_node(unsigned frequency, char chr);
-
-//   // internal node constructor.
-//   HT_node(HT_node *left_child, HT_node *right_child);
-
-
-// // converting PQ_node to HT_node
-//   HT_node(const PQ_node& pq_node);
-// };
 
 class HuffmanTree
 {
 public:
   HuffmanTree();
 
-  void build_huffman_tree(PriorityQueue* leafs);
+  //void build_huffman_tree(PriorityQueue* leafs);
+
   void build_huffman_tree(PriorityQueue& leafs);
 
-  void compress();
+  void traverse(PriorityQueue table);
+
+  string compress(string text);
   void decompress();
 
-  void print_huffman_tree(Node* root, string str);
+  void print_huffman_tree(Node* Root, string str);
+
+  Node* get_root() const {return root;};
+
+  string get_prefix_code() const {return prefix_code;};
+
+  PriorityQueue get_prefix_code_table() const {return prefix_code_table;};
+
+void add_to_prefix_code(string code);
   
 
   //HuffmanTree(char letter, unsigned frequency);
@@ -59,4 +48,6 @@ public:
 
 private:
   Node *root;
+  PriorityQueue prefix_code_table;
+  string prefix_code;
 };

@@ -16,68 +16,32 @@
 class Node
 {
   public:
-    char chr;
-    unsigned frequency;
-    Node *right;
-    Node *left;
-    Node *next;
+    char chr; // character
+    unsigned frequency; // characters frequency
+    Node *right; // pointer to right child (for Huffman Tree)
+    Node *left; // pointer to left child (for Huffman Tree)
+    Node *next; // pointer to next 
+    string prefix_code;
 
+    // Default Constructor
     Node();
-    Node(const char& chr);
-    Node(const Node &origin);
-    Node(const char &chr, const unsigned &frequency);
-    Node(const FrequencyCounter& freq_and_chr);
-    Node(const char& chr, Node *rigth, Node *left);
+
+    // Parameterized Constructors
+    Node(const char& chr); // Implemented for flexibility
+    Node(const Node &origin); // Copy Constructor
+    Node(const char &chr, const unsigned &frequency); // Used during "Prefix code table"
+    Node(const FrequencyCounter& freq_and_chr); // Implemented for flexibility
+    Node(const char& chr, Node *rigth, Node *left); // Implemented for flexibility
+
+    //void operator=(const Node* origin);
 
     // Getters
     char get_chr() const;
     unsigned get_freq() const;
+    string get_prefix_code() const;
 
     // Setters
     void set_chr(char chr);
     void set_freq(unsigned frequency);
+    void set_prefix_code(string prefix_code);
 };
-
-// Node::Node()
-// {
-//     next = left = right = NULL;
-// }
-
-// Node::Node(char chr, unsigned frequency)
-// {
-//     next = left = right = NULL;
-//     this->chr = chr;
-//     this->frequency = frequency;
-// }
-
-// Node::Node(char chr, Node *right, Node* left)
-// {
-//     this->chr = chr;
-//     this->left = left;
-//     this->right = right;
-//     next = NULL;
-// }
-
-//  // Getters
-
-// char Node::get_chr() const
-// {
-// return chr;
-// }
-
-// unsigned Node::get_freq() const
-// {
-// return frequency;
-// }
-
-// // Setters
-
-// void Node::set_chr(char chr)
-// {
-// this->chr = chr;
-// }
-
-// void Node::set_freq(unsigned frequency)
-// {
-// this->frequency = frequency;
-// }

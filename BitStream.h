@@ -9,7 +9,8 @@
  */
 
 #pragma once
-
+#include"PriorityQueue.h"
+#include"HuffmanTree.h"
 #include <fstream> // ifstream, ofstream
 using namespace std;
 
@@ -25,6 +26,10 @@ class InBitStream
     void close();
 
     void read_input(ifstream &input_file);
+
+    void traverse(PriorityQueue table, HuffmanTree root, ifstream* input_file);
+
+
     unsigned get_file_length() const {return file_length;};
 
     ~InBitStream();

@@ -7,16 +7,18 @@
  * Author: Deniz Evrendilek
  * Date:  16/MAR/2019
  */
- #include "FrequencyCounter.h"
-// #include "BitStream.h"
- #include "Node.h"
- #include "PriorityQueue.h"
+#include "FrequencyCounter.h"
+#include "BitStream.h"
+#include "Node.h"
+#include "PriorityQueue.h"
 #include "HuffmanTree.h"
+
 
 using namespace std;
 
 int main()
 {
+
     string file_name;
     cin >> file_name;
 
@@ -25,23 +27,57 @@ int main()
     FrequencyCounter freq_table(in_file); // creating freq table
     cout << "capacity: " << freq_table.get_capacity() << endl;
 
+    char* arr;
+    unsigned file_length;
+
+    in_file.open(file_name);
+    if (!in_file)
+    {
+        cout << "error-change this error type l8r" << endl;
+    }
+    else
+    {
+        in_file.seekg(0, in_file.end); // determining file length
+        file_length = in_file.tellg(); // determining file length
+        in_file.seekg(0, in_file.beg); // determining file length
+
+        arr = new char[file_length];
+
+        while (!in_file.eof()) // while not end of file, read the characters
+        {
+           in_file.read(arr, file_length);
+        }
+    }
+
     PriorityQueue leaf_nodes;
     HuffmanTree tree;
+     InBitStream in_bit;
 
     for (int i = 0; i < freq_table.get_capacity(); i++)
     {
         leaf_nodes.enqueue(freq_table[i]);
     }
-    
-    cout<<endl;
+
+    cout << endl;
     leaf_nodes.print();
-    cout<<"capacity of PQ: "<<leaf_nodes.get_size()<<endl;
-    cout<<endl;
-    cout<<endl;
+    cout << "capacity of PQ: " << leaf_nodes.get_size() << endl;
+    cout << endl;
+    cout << endl;
 
     tree.build_huffman_tree(leaf_nodes);
 
-    tree.print_huffman_tree(leaf_nodes.top(),"");
+    cout << endl;
+
+    cout << "capacity of PQ: " << leaf_nodes.get_size() << endl;
+
+    in_bit.traverse(tree.get_prefix_code_table(), tree, temp);
+
+    cout<< tree.get_prefix_code()<<endl;
+
+
+    // cout<<"pritung"<<endl;
+
+    //tree.print_huffman_tree(tree.get_root());
 
     //obj.input(in_file);
 

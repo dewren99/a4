@@ -49,6 +49,58 @@ void PriorityQueue::enqueue(const char &chr, const unsigned &frequency)
     size++;
 }
 
+void PriorityQueue::enqueue(const char &chr, const string &prefix_code)
+{
+    Node *new_node = new Node();
+    new_node->chr = chr;
+    new_node->prefix_code = prefix_code;
+    new_node->next = NULL;
+
+    if (is_empty())
+    {
+        head = new_node;
+    }
+    else
+    {
+        Node *temp = head;
+        while (temp->next != NULL)
+        {
+            temp = temp->next;
+        }
+        temp->next = new_node;
+    }
+    size++;
+    // Node *node = new Node();
+    // node->chr = chr;
+    // node->prefix_code = prefix_code;
+    // node->next = NULL;
+    // if (head == NULL)
+    // {
+    //     head = node;
+    //     size++;
+    // }
+    // else if (node->chr < head->chr)
+    // {
+    //     head = node;
+    //     size++;
+    // }
+    // else
+    // {
+    //     Node *prev = head;
+    //     Node *curr = head->next;
+
+    //     while (curr != NULL && node->chr >= curr->chr)
+    //     {
+    //         prev = curr;
+    //         curr = curr->next;
+    //     }
+
+    //     node->next = curr;
+    //     prev->next = node;
+    //     size++;
+    // }
+}
+
 // Implemented to give more options to the programmer
 void PriorityQueue::enqueue(const FrequencyCounter &obj)
 {
@@ -73,52 +125,81 @@ void PriorityQueue::enqueue(const FrequencyCounter &obj)
     size++;
 }
 
-void PriorityQueue::enqueue(const Node& node)
+void PriorityQueue::enqueue(Node *node)
 {
-    Node *new_node = new Node();
-    new_node->chr = node.chr;
-    new_node->frequency = node.frequency;
-    new_node->next = NULL;
+    //Node *new_node = new Node();
+    // new_node->chr = node.chr;
+    // new_node->frequency = node.frequency;
+    // new_node->next = NULL;
 
-    if (is_empty())
+    if (head == NULL)
     {
-        head = new_node;
+        head = node;
+        size++;
+    }
+    else if (node->frequency < head->frequency)
+    {
+        head = node;
+        size++;
     }
     else
     {
-        Node *temp = head;
-        while (temp->next != NULL)
+        Node *prev = head;
+        Node *curr = head->next;
+
+        while (curr != NULL && node->frequency >= curr->frequency)
         {
-            temp = temp->next;
+            prev = curr;
+            curr = curr->next;
         }
-        temp->next = new_node;
+
+        node->next = curr;
+        prev->next = node;
+        size++;
     }
-    size++;
+    // Node *new_node = new Node();
+    // new_node->chr = node.chr;
+    // new_node->frequency = node.frequency;
+    // new_node->next = NULL;
+
+    // if (is_empty())
+    // {
+    //     head = new_node;
+    // }
+    // else
+    // {
+    //     Node *temp = head;
+    //     while (temp->next != NULL)
+    //     {
+    //         temp = temp->next;
+    //     }
+    //     temp->next = new_node;
+    // }
+    // size++;
 }
 
-
-void PriorityQueue::dequeue()
+Node *PriorityQueue::dequeue()
 {
     if (is_empty())
     {
-        return;
+        return NULL;
     }
     else
     {
         Node *temp = head;
         head = head->next;
-        delete temp;
         size--;
+        return temp;
     }
 }
 
-Node* PriorityQueue::top() const
-{
-    if(!is_empty())
-    {
-        return head;
-    }
-}
+// Node *PriorityQueue::top() const
+// {
+//     if (!is_empty())
+//     {
+//         return head;
+//     }
+// }
 
 bool PriorityQueue::is_empty() const
 {
@@ -129,6 +210,25 @@ unsigned PriorityQueue::get_size() const
 {
     return size;
 }
+
+ string PriorityQueue::find_prefix_code(char chr) const
+  {
+      Node* temp = head;
+      string found_prefix_code = "";
+      while(temp != NULL)
+      {
+          if(temp->chr != chr)
+          {
+              temp = temp->next;
+          }
+          else
+          {
+              found_prefix_code = temp->prefix_code;
+              break;
+          }
+      }
+      return found_prefix_code;
+  }
 
 PriorityQueue::~PriorityQueue()
 {

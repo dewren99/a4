@@ -10,41 +10,35 @@
 
 #pragma once
 
-
 #include "Node.h"
 
-// class PQ_node
-// {
-// public:
-//   char chr;
-//   unsigned frequency;
-//   PQ_node *next;
 
-//   PQ_node();
-//   PQ_node(char chr, unsigned frequency);
-// };
 
 class PriorityQueue
 {
 
 public:
+
+// Default Constructor
   PriorityQueue();
 
-  void enqueue(const char &chr, const unsigned &frequency);
+// Parameterized Constructor
+  void enqueue(const char &chr, const unsigned &frequency); 
+  void enqueue(const char &chr, const string &prefix_code);
   void enqueue(const FrequencyCounter &obj);
-  void enqueue(const Node& node);
+  void enqueue(Node* node);
 
-  void dequeue();
-
-  Node* top() const;
+  Node* dequeue();
 
   bool is_empty() const;
 
   unsigned get_size() const;
 
+string find_prefix_code(char chr) const;
+
   ~PriorityQueue();
 
-void print(){ Node* temp = head; while(temp!=NULL){ cout<< temp->chr<<' '<<temp->frequency<<endl; temp = temp->next; }};
+void print(){ Node* temp = head; while(temp!=NULL){ cout<< temp->chr<<' '<<temp->prefix_code<<endl; temp = temp->next; }};
 
 private:
   unsigned size;
