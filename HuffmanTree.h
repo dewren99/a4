@@ -1,7 +1,7 @@
 /*
  * HuffmanTree.h
  *
- * Class Description:
+ * Class Description: Creating & Printing Huffman Tree
  *
  *
  * Author: Deniz Evrendilek, Hao Ran Wei
@@ -10,40 +10,37 @@
 
 #pragma once
 
-
 #include "Node.h"
 #include "FrequencyCounter.h"
 #include "PriorityQueue.h"
 #include "string"
 
-
 class HuffmanTree
 {
 public:
-
-// Default Constructor
+  // Default Constructor
   HuffmanTree();
 
-  void build_huffman_tree(PriorityQueue& leafs);
+  // Building Huffman Tree
+  void build_huffman_tree(PriorityQueue &leafs);
 
-  void traverse(PriorityQueue table);
+ // Prints Tree nodes and their prefix code
+  void print_huffman_tree(Node *Root, string str);
 
-  string compress(string text);
-  void decompress();
+  // Getters
+  Node *get_root() const { return root; };
+  string get_prefix_code() const { return prefix_code; };
 
-  void print_huffman_tree(Node* Root, string str);
+  // Returns prefix code table that has characthers and their prefix code
+  PriorityQueue get_prefix_code_table() const { return prefix_code_table; };
 
-  Node* get_root() const {return root;};
+  // Updating prefix code
+  void add_to_prefix_code(string code);
 
-  string get_prefix_code() const {return prefix_code;};
+  // Deleting nodes recursively
+  void destroy_huffman_tree(Node *tree_root);
 
-  PriorityQueue get_prefix_code_table() const {return prefix_code_table;};
-
-void add_to_prefix_code(string code);
-  
-
-  //HuffmanTree(char letter, unsigned frequency);
-
+  // Destructor
   ~HuffmanTree();
 
 private:

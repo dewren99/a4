@@ -12,33 +12,36 @@
 
 #include "Node.h"
 
-
-
 class PriorityQueue
 {
 
 public:
-
-// Default Constructor
+  // Default Constructor
   PriorityQueue();
 
-// Parameterized Constructor
-  void enqueue(const char &chr, const unsigned &frequency); 
+  // Enqueue Function Overloading for more flexiblity and convenience
+  void enqueue(const char &chr, const unsigned &frequency);
   void enqueue(const char &chr, const string &prefix_code);
   void enqueue(const FrequencyCounter &obj);
-  void enqueue(Node* node);
+  void enqueue(Node *node);
 
-  Node* dequeue();
+// returns top
+  Node *dequeue();
 
+// Checks if priority queue empty
   bool is_empty() const;
 
+  // Getters
   unsigned get_size() const;
 
-string find_prefix_code(char chr) const;
+  // Searching the prefix code of the chr inside the priority queue
+  string find_prefix_code(char chr) const;
+  
+  // Printing the Priority Queue for prefix code table
+  void print() const;
 
+// Destructor
   ~PriorityQueue();
-
-void print(){ Node* temp = head; while(temp!=NULL){ cout<< temp->chr<<' '<<temp->prefix_code<<endl; temp = temp->next; }};
 
 private:
   unsigned size;

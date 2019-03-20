@@ -10,14 +10,15 @@
 
 #include "PriorityQueue.h"
 
-
+// Default Constructor
 PriorityQueue::PriorityQueue()
 {
     size = 0;
     head = NULL;
 }
 
-void PriorityQueue::enqueue(const char &chr, const unsigned &frequency)
+// Enqueue Function Overloading for more flexiblity and convenience
+void PriorityQueue::enqueue(const char &chr, const unsigned &frequency) // enqueue char and its frequency
 {
     Node *new_node = new Node();
     new_node->chr = chr;
@@ -40,7 +41,8 @@ void PriorityQueue::enqueue(const char &chr, const unsigned &frequency)
     size++;
 }
 
-void PriorityQueue::enqueue(const char &chr, const string &prefix_code)
+// Enqueue Function Overloading for more flexiblity and convenience
+void PriorityQueue::enqueue(const char &chr, const string &prefix_code) // used for prefix code table
 {
     Node *new_node = new Node();
     new_node->chr = chr;
@@ -63,8 +65,8 @@ void PriorityQueue::enqueue(const char &chr, const string &prefix_code)
     size++;
 }
 
-// Implemented to give more options to the programmer
-void PriorityQueue::enqueue(const FrequencyCounter &obj)
+// Enqueue Function Overloading for more flexiblity and convenience
+void PriorityQueue::enqueue(const FrequencyCounter &obj) // copying objects char and frequency
 {
     Node *new_node = new Node();
     new_node->chr = obj.get_letter();
@@ -87,6 +89,7 @@ void PriorityQueue::enqueue(const FrequencyCounter &obj)
     size++;
 }
 
+// Enqueue Function Overloading for more flexiblity and convenience
 void PriorityQueue::enqueue(Node *node)
 {
 
@@ -117,6 +120,7 @@ void PriorityQueue::enqueue(Node *node)
     }
 }
 
+// returns top
 Node *PriorityQueue::dequeue()
 {
     if (is_empty())
@@ -132,36 +136,50 @@ Node *PriorityQueue::dequeue()
     }
 }
 
+// Checks if priority queue empty
 bool PriorityQueue::is_empty() const
 {
     return (head == NULL);
 }
 
+// Getters
 unsigned PriorityQueue::get_size() const
 {
     return size;
 }
 
- string PriorityQueue::find_prefix_code(char chr) const
-  {
-      Node* temp = head;
-      string found_prefix_code = "";
-      while(temp != NULL)
-      {
-          if(temp->chr != chr)
-          {
-              temp = temp->next;
-          }
-          else
-          {
-              found_prefix_code = temp->prefix_code;
-              break;
-          }
-      }
-     // cout<<found_prefix_code<<endl;
-      return found_prefix_code;
-  }
+// Searching the prefix code of the chr inside the priority queue
+string PriorityQueue::find_prefix_code(char chr) const
+{
+    Node *temp = head;
+    string found_prefix_code = "";
+    while (temp != NULL)
+    {
+        if (temp->chr != chr)
+        {
+            temp = temp->next;
+        }
+        else
+        {
+            found_prefix_code = temp->prefix_code;
+            break;
+        }
+    }
+    return found_prefix_code;
+}
 
+ // Printing the Priority Queue for prefix code table
+void PriorityQueue::print() const
+{
+    Node *temp = head;
+    while (temp != NULL)
+    {
+        cout << temp->chr << ' ' << temp->prefix_code << endl;
+        temp = temp->next;
+    }
+}
+
+// Destructor
 PriorityQueue::~PriorityQueue()
 {
     Node *prev = head;

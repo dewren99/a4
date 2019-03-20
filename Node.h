@@ -21,7 +21,7 @@ class Node
     Node *right; // pointer to right child (for Huffman Tree)
     Node *left; // pointer to left child (for Huffman Tree)
     Node *next; // pointer to next 
-    string prefix_code;
+    string prefix_code; // keeping track of the char's prefix code. Implemented for convenience
 
     // Default Constructor
     Node();

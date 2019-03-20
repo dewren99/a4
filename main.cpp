@@ -62,6 +62,17 @@ int main(int argc, char *argv[])
         cout << tree.get_prefix_code() << endl;
         cout << endl;
     }
+    else if(argument=="-d")
+    {
+        cout<<"Decompressing Code Unavailable :)"<<endl;
+        exit(1);
+    }
+    else
+    {
+        cout<<"Invalid Command. Try -c"<<endl;
+        exit(1);
+    }
+    
 
     return 0;
 }

@@ -38,6 +38,9 @@ public:
   char *get_text() { return text; };
   unsigned get_text_len() const { return text_len; };
 
+// Destructor
+  ~FrequencyCounter();
+
 private:
   char letter;
   unsigned frequency;

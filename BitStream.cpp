@@ -13,10 +13,12 @@
 
 //InBitStream Member Functions
 
+//Default Constructor
 InBitStream::InBitStream()
 {
 }
 
+//Paramatized Constructor
 InBitStream::InBitStream(const string &file_path)
 {
 }
@@ -26,10 +28,12 @@ void InBitStream::close()
 {
 }
 
+// Read the values from the file
 void InBitStream::read_input(ifstream &input_file)
 {
 }
 
+//Compressing the Tree
 void InBitStream::traverse(PriorityQueue table, HuffmanTree &root, char *arr, int size)
 {
     string code = "";
@@ -40,19 +44,24 @@ void InBitStream::traverse(PriorityQueue table, HuffmanTree &root, char *arr, in
     }
 }
 
+//Desctructor
 InBitStream::~InBitStream()
 {
 }
 
 //OutBitStream Member Functions
 
+//Default Constructor
 OutBitStream::OutBitStream()
 {
 }
+
+//Paramatized Constructor
 OutBitStream::OutBitStream(const string &file_path)
 {
 }
 
+// Write the values to a file
 void OutBitStream::write_output()
 {
 }
@@ -62,6 +71,7 @@ void OutBitStream::close()
 {
 }
 
+//Desctructor
 OutBitStream::~OutBitStream()
 {
     if (is_open())

@@ -205,3 +205,9 @@ void merge_sort(FrequencyCounter *arr, unsigned first, unsigned last)
       else
       return frequency_table[index]; 
   }
+
+FrequencyCounter::~FrequencyCounter()
+{
+    delete []frequency_table;
+    delete [] text;
+}

@@ -9,29 +9,36 @@
  */
 
 #pragma once
-#include"PriorityQueue.h"
-#include"HuffmanTree.h"
+#include "PriorityQueue.h"
+#include "HuffmanTree.h"
 #include <fstream> // ifstream, ofstream
 using namespace std;
 
 class InBitStream
 {
   public:
-    InBitStream(); // read file?
+    //Default Constructor
+    InBitStream();
+
+    //Paramatized Constructor
     InBitStream(const string &file_path);
 
-    bool is_open() const {return in_file.is_open();};
+    // Checking if the file is open
+    bool is_open() const { return in_file.is_open(); };
 
-// Closing the file. It is called by the destructor, If it is not called manually.
+    // Closing the file. It is called by the destructor, If it is not called manually.
     void close();
 
+    // Read the values from the file
     void read_input(ifstream &input_file);
 
-    void traverse(PriorityQueue table, HuffmanTree& root, char* arr, int size);
+    //Compressing the Tree
+    void traverse(PriorityQueue table, HuffmanTree &root, char *arr, int size);
 
+    //Getters
+    unsigned get_file_length() const { return file_length; };
 
-    unsigned get_file_length() const {return file_length;};
-
+    //Desctructor
     ~InBitStream();
 
   private:
@@ -42,18 +49,24 @@ class InBitStream
 class OutBitStream
 {
   public:
+    //Default Constructor
     OutBitStream();
+
+    //Paramatized Constructor
     OutBitStream(const string &file_path);
 
+    // Write the values to a file
     void write_output();
 
-    bool is_open() const {return out_file.is_open();};
+    bool is_open() const { return out_file.is_open(); };
 
-// Closing the file. It is called by the destructor, If it is not called manually.
+    // Closing the file. It is called by the destructor, If it is not called manually.
     void close();
 
-    unsigned get_file_length() const {return file_length;};
+    //Getters
+    unsigned get_file_length() const { return file_length; };
 
+    //Desctructor
     ~OutBitStream();
 
   private:
