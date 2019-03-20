@@ -9,7 +9,7 @@
  */
 #include "FrequencyCounter.h"
 
-FrequencyCounter::FrequencyCounter()
+FrequencyCounter::FrequencyCounter()// Default constructor
 {
     size = 0;
     frequency = 0;
@@ -18,7 +18,8 @@ FrequencyCounter::FrequencyCounter()
     text_len = 0;
 }
 
-FrequencyCounter::FrequencyCounter(ifstream &input_file)
+FrequencyCounter::FrequencyCounter(ifstream &input_file)// Read input file and create frequency table
+
 {
     char letter;
 
@@ -40,25 +41,25 @@ FrequencyCounter::FrequencyCounter(ifstream &input_file)
         else
         {
             cout<<"Error. Empty file"<<endl;
-            exit(1);
+            exit(1); // If file is empty terminate the program
         }
 
         while (!input_file.eof() && capacity != 0) // while not end of file, read the characters
         {
-            input_file.read(arr, capacity);
+            input_file.read(arr, capacity); // read the file pass the characters to char array
         }
         frequency_table = new FrequencyCounter[capacity];
 
         text = new char[capacity];
 
-        for(int i =0; i<capacity; i++)
+        for(int i =0; i<capacity; i++) // Copying the char array to array called "text"
         {
             text[i]= arr[i];
         }
-        text_len = capacity;
+        text_len = capacity; // Storing the char array before editing it for future use
 
 
-        unsigned *index_holder = new unsigned[capacity];
+        unsigned *index_holder = new unsigned[capacity]; // for storing the index numbers
 
         for (int i = 0; i < capacity; i++)
         {
@@ -77,9 +78,9 @@ FrequencyCounter::FrequencyCounter(ifstream &input_file)
                     if (arr[i] == arr[j]) // if there is more than once occurance count how many
                     {
                         counter++;
-                        frequency_table[i].letter = arr[i];
-                        frequency_table[i].frequency = counter;
-                        index_holder[j] = j;
+                        frequency_table[i].letter = arr[i]; // copy char to frequency table
+                        frequency_table[i].frequency = counter; // copy chars frequency to frequency table
+                        index_holder[j] = j; // store current index
                     }
                 }
             }
@@ -115,7 +116,7 @@ FrequencyCounter::FrequencyCounter(ifstream &input_file)
 
         unsigned start = 0;
 
-        merge_sort(frequency_table,start,size);
+        merge_sort(frequency_table,start,size); // sort the frequency table by frequency
 
         for (int i = 0; i < capacity; i++)
         {
@@ -126,15 +127,15 @@ FrequencyCounter::FrequencyCounter(ifstream &input_file)
 
 bool operator<=(const FrequencyCounter& arr1, const FrequencyCounter& arr2)
 {
-    return (arr1.get_frequency() <= arr2.get_frequency());
+    return (arr1.get_frequency() <= arr2.get_frequency()); // return biggest frequency
 }
 
 bool operator>=(const FrequencyCounter& arr1, const FrequencyCounter& arr2)
 {
-    return (arr1.get_frequency() >= arr2.get_frequency());
+    return (arr1.get_frequency() >= arr2.get_frequency()); // return biggest frequency
 }
 
-void merge(FrequencyCounter *arr, unsigned first, unsigned mid, unsigned last)
+void merge(FrequencyCounter *arr, unsigned first, unsigned mid, unsigned last) // merge function for merge sort
 {
 
        int i, j, k; 

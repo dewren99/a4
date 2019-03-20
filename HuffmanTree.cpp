@@ -18,6 +18,7 @@ HuffmanTree::HuffmanTree()
     prefix_code = "";
 }
 
+
 void HuffmanTree::build_huffman_tree(PriorityQueue &leafs)
 {
     while (leafs.get_size() > 1)

@@ -20,9 +20,9 @@
 class HuffmanTree
 {
 public:
-  HuffmanTree();
 
-  //void build_huffman_tree(PriorityQueue* leafs);
+// Default Constructor
+  HuffmanTree();
 
   void build_huffman_tree(PriorityQueue& leafs);
 

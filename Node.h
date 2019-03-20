@@ -33,7 +33,6 @@ class Node
     Node(const FrequencyCounter& freq_and_chr); // Implemented for flexibility
     Node(const char& chr, Node *rigth, Node *left); // Implemented for flexibility
 
-    //void operator=(const Node* origin);
 
     // Getters
     char get_chr() const;

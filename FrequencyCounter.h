@@ -18,23 +18,23 @@ using namespace std;
 class FrequencyCounter
 {
 public:
-  FrequencyCounter();
-  //FrequencyCounter(unsigned capacity);
-  FrequencyCounter(ifstream &input_file);
-  //void input(ifstream& input_file);
+  FrequencyCounter(); // Default constructor
+  FrequencyCounter(ifstream &input_file); // Read input file and create frequency table
 
   friend bool operator<=(const FrequencyCounter &arr1, const FrequencyCounter &arr2);
   friend bool operator>=(const FrequencyCounter &arr1, const FrequencyCounter &arr2);
 
+// Sorting the frequency table with merge sort
   friend void merge(FrequencyCounter *arr, unsigned first, unsigned mid, unsigned last);
   friend void merge_sort(FrequencyCounter *arr, unsigned first, unsigned last);
 
   FrequencyCounter &operator[](const unsigned &index) const;
 
+
+// Getters
   unsigned get_capacity() const { return capacity; };
   unsigned get_frequency() const { return frequency; };
   unsigned get_letter() const { return letter; };
-
   char *get_text() { return text; };
   unsigned get_text_len() const { return text_len; };
 

@@ -54,13 +54,6 @@ Node::Node(const char& chr, Node *right, Node *left)// Implemented for flexibili
     next = NULL;
 }
 
-// void Node::operator=(const Node* origin)
-// {
-//     chr = origin->chr;
-//     frequency = origin->frequency;
-// }
-
-
 // Getters
 char Node::get_chr() const
 {
