@@ -4,21 +4,12 @@
  * Class Description:
  *
  *
- * Author: Deniz Evrendilek
+ * Author: Deniz Evrendilek, Hao Ran Wei
  * Date:  16/MAR/2019
  */
 
 #include "PriorityQueue.h"
 
-// PQ_node::PQ_node()
-// {
-// }
-
-// PQ_node::PQ_node(char chr, unsigned frequency)
-// {
-//     this->chr = chr;
-//     this->frequency = frequency;
-// }
 
 PriorityQueue::PriorityQueue()
 {
@@ -70,35 +61,6 @@ void PriorityQueue::enqueue(const char &chr, const string &prefix_code)
         temp->next = new_node;
     }
     size++;
-    // Node *node = new Node();
-    // node->chr = chr;
-    // node->prefix_code = prefix_code;
-    // node->next = NULL;
-    // if (head == NULL)
-    // {
-    //     head = node;
-    //     size++;
-    // }
-    // else if (node->chr < head->chr)
-    // {
-    //     head = node;
-    //     size++;
-    // }
-    // else
-    // {
-    //     Node *prev = head;
-    //     Node *curr = head->next;
-
-    //     while (curr != NULL && node->chr >= curr->chr)
-    //     {
-    //         prev = curr;
-    //         curr = curr->next;
-    //     }
-
-    //     node->next = curr;
-    //     prev->next = node;
-    //     size++;
-    // }
 }
 
 // Implemented to give more options to the programmer
@@ -127,10 +89,6 @@ void PriorityQueue::enqueue(const FrequencyCounter &obj)
 
 void PriorityQueue::enqueue(Node *node)
 {
-    //Node *new_node = new Node();
-    // new_node->chr = node.chr;
-    // new_node->frequency = node.frequency;
-    // new_node->next = NULL;
 
     if (head == NULL)
     {
@@ -157,25 +115,6 @@ void PriorityQueue::enqueue(Node *node)
         prev->next = node;
         size++;
     }
-    // Node *new_node = new Node();
-    // new_node->chr = node.chr;
-    // new_node->frequency = node.frequency;
-    // new_node->next = NULL;
-
-    // if (is_empty())
-    // {
-    //     head = new_node;
-    // }
-    // else
-    // {
-    //     Node *temp = head;
-    //     while (temp->next != NULL)
-    //     {
-    //         temp = temp->next;
-    //     }
-    //     temp->next = new_node;
-    // }
-    // size++;
 }
 
 Node *PriorityQueue::dequeue()
@@ -192,14 +131,6 @@ Node *PriorityQueue::dequeue()
         return temp;
     }
 }
-
-// Node *PriorityQueue::top() const
-// {
-//     if (!is_empty())
-//     {
-//         return head;
-//     }
-// }
 
 bool PriorityQueue::is_empty() const
 {
@@ -227,6 +158,7 @@ unsigned PriorityQueue::get_size() const
               break;
           }
       }
+     // cout<<found_prefix_code<<endl;
       return found_prefix_code;
   }
 

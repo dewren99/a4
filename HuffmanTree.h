@@ -4,7 +4,7 @@
  * Class Description:
  *
  *
- * Author: Deniz Evrendilek
+ * Author: Deniz Evrendilek, Hao Ran Wei
  * Date:  16/MAR/2019
  */
 

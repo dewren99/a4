@@ -4,7 +4,7 @@
  * Class Description:
  *
  *
- * Author: Deniz Evrendilek
+ * Author: Deniz Evrendilek, Hao Ran Wei
  * Date:  16/MAR/2019
  */
 
@@ -27,7 +27,7 @@ class InBitStream
 
     void read_input(ifstream &input_file);
 
-    void traverse(PriorityQueue table, HuffmanTree root, ifstream* input_file);
+    void traverse(PriorityQueue table, HuffmanTree& root, char* arr, int size);
 
 
     unsigned get_file_length() const {return file_length;};
@@ -60,17 +60,3 @@ class OutBitStream
     unsigned file_length;
     fstream out_file;
 };
-
-// // 8 bits = one char
-// class BitStream
-// {
-//     public:
-//     BitStream(); // read file?
-//     void read_input(ifstream& input_file);
-//     void write_output();
-//     unsigned get_file_length() const;
-
-//     private:
-//     unsigned file_length;
-
-// };

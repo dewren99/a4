@@ -4,7 +4,7 @@
  * Class Description:
  *
  *
- * Author: Deniz Evrendilek
+ * Author: Deniz Evrendilek, Hao Ran Wei
  * Date:  16/MAR/2019
  */
 
@@ -23,24 +23,26 @@ public:
   FrequencyCounter(ifstream &input_file);
   //void input(ifstream& input_file);
 
-  friend bool operator<=(const FrequencyCounter& arr1, const FrequencyCounter& arr2);
-  friend bool operator>=(const FrequencyCounter& arr1, const FrequencyCounter& arr2);
+  friend bool operator<=(const FrequencyCounter &arr1, const FrequencyCounter &arr2);
+  friend bool operator>=(const FrequencyCounter &arr1, const FrequencyCounter &arr2);
 
   friend void merge(FrequencyCounter *arr, unsigned first, unsigned mid, unsigned last);
   friend void merge_sort(FrequencyCounter *arr, unsigned first, unsigned last);
 
-  FrequencyCounter& operator[](const unsigned& index) const;
-
+  FrequencyCounter &operator[](const unsigned &index) const;
 
   unsigned get_capacity() const { return capacity; };
-  unsigned get_frequency() const {return frequency;};
-  unsigned get_letter() const {return letter;};
+  unsigned get_frequency() const { return frequency; };
+  unsigned get_letter() const { return letter; };
 
+  char *get_text() { return text; };
+  unsigned get_text_len() const { return text_len; };
 
 private:
   char letter;
   unsigned frequency;
-
+  char *text;
+  unsigned text_len;
   static const unsigned INITIAL_SIZE = 10;
   unsigned size;
   unsigned capacity;
